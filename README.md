@@ -106,9 +106,9 @@ erDiagram
 
 ```mermaid
 erDiagram
-    TENANTS ||--o{ CAMPUSES
-    TENANTS ||--o{ DEPARTMENTS
-    DEPARTMENTS ||--o{ PROGRAMS
+    TENANTS ||--o{ CAMPUSES : has
+    TENANTS ||--o{ DEPARTMENTS : contains
+    DEPARTMENTS ||--o{ PROGRAMS : offers
 ```
 
 Programs abstract:
