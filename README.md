@@ -132,7 +132,7 @@ Supports:
 
 ```mermaid
 erDiagram
-    ACADEMIC_CALENDARS ||--o{ ACADEMIC_TERMS
+    ACADEMIC_CALENDARS ||--o{ ACADEMIC_TERMS : contains
 ```
 
 ---
@@ -147,8 +147,8 @@ erDiagram
 
 ```mermaid
 erDiagram
-    STUDENTS ||--o{ STUDENT_GUARDIANS
-    GUARDIANS ||--o{ STUDENT_GUARDIANS
+    STUDENTS ||--o{ STUDENT_GUARDIANS : has
+    GUARDIANS ||--o{ STUDENT_GUARDIANS : linked_to
 ```
 
 ### Design Intent
@@ -170,9 +170,9 @@ erDiagram
 
 ```mermaid
 erDiagram
-    STUDENTS ||--o{ STUDENT_ENROLLMENTS
-    PROGRAMS ||--o{ STUDENT_ENROLLMENTS
-    STUDENT_ENROLLMENTS ||--o{ STUDENT_ACADEMIC_STATUSES
+    STUDENTS ||--o{ STUDENT_ENROLLMENTS : enrolls_in
+    PROGRAMS ||--o{ STUDENT_ENROLLMENTS : has
+    STUDENT_ENROLLMENTS ||--o{ STUDENT_ACADEMIC_STATUSES : tracks
 ```
 
 Supports:
@@ -193,10 +193,10 @@ Supports:
 
 ```mermaid
 erDiagram
-    PROGRAMS ||--o{ COURSES
-    COURSES ||--o{ CLASS_SECTIONS
-    TIMETABLES ||--o{ TIMETABLE_SLOTS
-    CLASS_SECTIONS ||--o{ TIMETABLE_SLOTS
+    PROGRAMS ||--o{ COURSES : includes
+    COURSES ||--o{ CLASS_SECTIONS : has
+    TIMETABLES ||--o{ TIMETABLE_SLOTS : contains
+    CLASS_SECTIONS ||--o{ TIMETABLE_SLOTS : scheduled_in
 ```
 
 This design enables:
@@ -234,9 +234,9 @@ Design goals:
 
 ```mermaid
 erDiagram
-    ASSESSMENT_SCHEMES ||--o{ ASSESSMENT_ITEMS
-    ASSESSMENT_ITEMS ||--o{ ASSESSMENT_RESULTS
-    STUDENTS ||--o{ FINAL_GRADES
+    ASSESSMENT_SCHEMES ||--o{ ASSESSMENT_ITEMS : defines
+    ASSESSMENT_ITEMS ||--o{ ASSESSMENT_RESULTS : produces
+    STUDENTS ||--o{ FINAL_GRADES : receives
 ```
 
 Supports:
@@ -259,9 +259,9 @@ Supports:
 
 ```mermaid
 erDiagram
-    EXAM_PERIODS ||--o{ EXAMS
-    EXAMS ||--o{ EXAM_SESSIONS
-    EXAM_SESSIONS ||--o{ EXAM_SEAT_ALLOCATIONS
+    EXAM_PERIODS ||--o{ EXAMS : contains
+    EXAMS ||--o{ EXAM_SESSIONS : has
+    EXAM_SESSIONS ||--o{ EXAM_SEAT_ALLOCATIONS : allocates
 ```
 
 Covers:
@@ -283,9 +283,9 @@ Covers:
 
 ```mermaid
 erDiagram
-    LEARNING_MODULES ||--o{ LESSONS
-    LESSONS ||--o{ LESSON_RESOURCES
-    ASSIGNMENTS ||--o{ ASSIGNMENT_SUBMISSIONS
+    LEARNING_MODULES ||--o{ LESSONS : contains
+    LESSONS ||--o{ LESSON_RESOURCES : has
+    ASSIGNMENTS ||--o{ ASSIGNMENT_SUBMISSIONS : receives
 ```
 
 Designed to compete with:
@@ -309,9 +309,9 @@ Designed to compete with:
 
 ```mermaid
 erDiagram
-    STUDENTS ||--|| STUDENT_ACCOUNTS
-    STUDENT_ACCOUNTS ||--o{ INVOICES
-    INVOICES ||--o{ PAYMENTS
+    STUDENTS ||--|| STUDENT_ACCOUNTS : has
+    STUDENT_ACCOUNTS ||--o{ INVOICES : generates
+    INVOICES ||--o{ PAYMENTS : receives
 ```
 
 Supports:
@@ -370,9 +370,9 @@ Used for:
 
 ```mermaid
 erDiagram
-    SUBSCRIPTION_PLANS ||--o{ SUBSCRIPTION_PLAN_FEATURES
-    SUBSCRIPTION_FEATURES ||--o{ SUBSCRIPTION_PLAN_FEATURES
-    TENANTS ||--o{ TENANT_SUBSCRIPTIONS
+    SUBSCRIPTION_PLANS ||--o{ SUBSCRIPTION_PLAN_FEATURES : includes
+    SUBSCRIPTION_FEATURES ||--o{ SUBSCRIPTION_PLAN_FEATURES : part_of
+    TENANTS ||--o{ TENANT_SUBSCRIPTIONS : subscribes_to
 ```
 
 Enables:
